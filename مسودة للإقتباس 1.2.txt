@@ -1,0 +1,15 @@
+
+<html>
+<head>
+<title>  الصفحة الرئيسية  </title>
+<link rel=" icon " href=" img-media\AA5.jpg " type=" image/x-icon ">
+</head>
+<!-- <body bgcolor=" yellow or black  "> -->
+<body bgcolor=" red  ">
+
+
+
+
+
+</body>
+</html>

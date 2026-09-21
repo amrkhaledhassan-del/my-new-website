@@ -1,0 +1,290 @@
+
+         <!DOCTYPE html>
+    <html lang="ar">
+      
+    <!--  السطر ده هو اللي بيفك الشفرة وبيخلي العربي يظهر صح -->
+
+    <head>
+<meta charset="UTF-8">
+    
+    
+</head> 
+<title>  طلب تنفيذ مشروع جديد  </title>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <link rel=" icon " href=" img-media\AA5.jpg " type=" image/x-icon ">
+  <meta charset="UTF-8">
+  <title>طلب مشروع جديد - عمرو إيجنسي</title>
+  <style>
+    body { 
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      background-color: #0f172a; 
+      color: #f8fafc; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px; 
+      box-sizing: border-box;
+    }
+    .form-container { 
+      background: #1e293b; 
+      padding: 35px 30px; 
+      border-radius: 16px; 
+      width: 100%; 
+      max-width: 500px; 
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border: 1px solid #334155;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 25px;
+      color: #ffffff;
+      font-size: 24px;
+    }
+    .form-group { 
+      margin-bottom: 18px; 
+    }
+    label { 
+      display: block; 
+      margin-bottom: 8px; 
+      font-weight: 600; 
+      color: #cbd5e1; 
+      font-size: 14px;
+    }
+    .optional-tag {
+      color: #64748b;
+      font-weight: normal;
+      font-size: 12px;
+    }
+    input, select, textarea { 
+      width: 100%; 
+      padding: 12px; 
+      background-color: #0f172a; 
+      color: #ffffff; 
+      border: 1px solid #475569; 
+      border-radius: 8px; 
+      box-sizing: border-box; 
+      font-size: 15px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #64748b;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #2563eb; 
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+    }
+    .input-error {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25) !important;
+    }
+    .error-text {
+      color: #f87171;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+    select option {
+      background-color: #1e293b;
+      color: #ffffff;
+    }
+    button { 
+      width: 100%; 
+      padding: 14px; 
+      background: #2563eb; 
+      color: #ffffff; 
+      border: none; 
+      border-radius: 8px; 
+      font-size: 16px; 
+      font-weight: bold; 
+      cursor: pointer; 
+      margin-top: 10px;
+      transition: background 0.3s ease, transform 0.1s ease;
+    }
+    button:hover { 
+      background: #1d4ed8; 
+    }
+    button:active {
+      transform: scale(0.98);
+    }
+
+    
+<!--  Form Submit send to my g_mail  -->
+
+
+
+ 
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>طلب تنفيذ مشروع</h2>
+
+    <form id="paymentForm" action="https://formsubmit.co/amr.khaled.hassan@gmail.com" method="POST" enctype="multipart/form-data" novalidate>
+        
+        <input type="hidden" name="_next" value="  checkout & Payment.html">
+        <input type="hidden" name="_captcha" value="false">
+      
+      <div class="form-group">
+        <label for="name">الاسم بالكامل: *</label>
+        <input type="text" id="name" name="الاسم" placeholder="أحمد محمد">
+        <span class="error-text" id="nameError">يرجى كتابة الاسم بالحروف فقط بدون أرقام</span>
+      </div>
+
+      <div class="form-group">
+        <label for="whatsapp">رقم الواتساب: *</label>
+        <input type="tel" id="whatsapp" name="الواتساب" placeholder="010XXXXXXXX">
+        <span class="error-text" id="whatsappError">يرجى كتابة أرقام فقط بدون أحرف (10 أرقام على الأقل)</span>
+      </div>
+
+      <div class="form-group">
+        <label for="projectName">اسم المشروع: *</label>
+        <input type="text" id="projectName" name="اسم_المشروع" placeholder="تطبيق مطعم">
+        <span class="error-text" id="projectNameError">يرجى إدخال اسم المشروع</span>
+      </div>
+
+      <div class="form-group">
+        <label for="projectType">نوع المشروع: *</label>
+        <select id="projectType" name="نوع_المشروع">
+          <option value="">-- اختر نوع المشروع --</option>
+          <option value="موقع إلكتروني">موقع إلكتروني (Website)</option>
+          <option value="تطبيق موبايل">تطبيق موبايل (Mobile App)</option>
+          <option value="موقع وتطبيق معاً">موقع وتطبيق معاً</option>
+        </select>
+        <span class="error-text" id="projectTypeError">يرجى اختيار نوع المشروع</span>
+      </div>
+
+      <div class="form-group">
+        <label for="hasAdmin">هل تحتاج لوحة تحكم؟ *</label>
+        <select id="hasAdmin" name="لوحة_التحكم">
+          <option value="">-- اختر إجابة --</option>
+          <option value="نعم">نعم</option>
+          <option value="لا">لا</option>
+        </select>
+        <span class="error-text" id="hasAdminError">يرجى تحديد ما إذا كنت تحتاج لوحة تحكم</span>
+      </div>
+
+      <div class="form-group">
+        <label for="features">أهم المميزات المطلوبة: <span class="optional-tag">(اختياري)</span></label>
+        <textarea id="features" name="المميزات" rows="4" placeholder="اكتب المميزات هنا إذا توفرت..."></textarea>
+      </div>
+
+      <button type="submit">إرسال تفاصيل المشروع</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('projectForm').addEventListener('submit', function(e) {
+      let isValid = true;
+
+      function showError(inputId, errorId) {
+        const input = document.getElementById(inputId);
+        const error = document.getElementById(errorId);
+        input.classList.add('input-error');
+        error.style.display = 'block';
+        isValid = false;
+      }
+
+      function clearError(inputId, errorId) {
+        const input = document.getElementById(inputId);
+        const error = document.getElementById(errorId);
+        input.classList.remove('input-error');
+        error.style.display = 'none';
+      }
+document.getElementById('projectName').addEventListener('input', function() {
+    this.value = this.value.replace(/[0-9٠-٩]/g, '');
+});
+      // 1. التحقق من الاسم (حروف فقط وحجم لا يقل عن حرفين)
+      const name = document.getElementById('name').value.trim();
+      const nameRegex = /^[\u0600-\u06FFa-zA-Z\s]{2,}$/;
+      if (!nameRegex.test(name)) {
+        showError('name', 'nameError');
+      } else {
+        clearError('name', 'nameError');
+      }
+
+      // 2. التحقق من رقم الواتساب (أرقام فقط بدون حروف)
+      const whatsapp = document.getElementById('whatsapp').value.trim();
+      const phoneRegex = /^[0-9+]{10,15}$/;
+      if (!phoneRegex.test(whatsapp)) {
+        showError('whatsapp', 'whatsappError');
+      } else {
+        clearError('whatsapp', 'whatsappError');
+      }
+	  
+	  // 3. التحقق من اسم المشروع
+const projectName = document.getElementById('projectName').value.trim();
+const projectNameRegex = /^[\u0600-\u06FFa-zA-Z\s]+$/;
+
+if (!projectName) {
+    showError('projectName', 'projectNameError');
+} else if (!projectNameRegex.test(projectName) || projectName.length > 30) {
+    showError('projectName', 'projectNameError');
+} else {
+    clearError('projectName', 'projectNameError');
+}
+
+
+
+     
+
+      // 5. التحقق من لوحة التحكم
+      const hasAdmin = document.getElementById('hasAdmin').value;
+      if (hasAdmin === '') {
+        showError('hasAdmin', 'hasAdminError');
+      } else {
+        clearError('hasAdmin', 'hasAdminError');
+      }
+
+      // منع الإرسال إذا كان هناك أي خطأ
+      if (!isValid) {
+        e.preventDefault();
+      }
+    });
+
+  
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method || 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                // اسم الصفحة بالعربي زي ما تحب
+                window.location.href = 'صفحة الشكر للعميل.html'; 
+            } else {
+                alert('حدث خطأ أثناء إرسال البيانات، برجاء المحاولة مرة أخرى.');
+            }
+        } catch (error) {
+            alert('اتعذر الاتصال بالخادم، تأكد من اتصال الإنترنت أو  تأكد من صحة البيانات التى قمت بإدخلها فى النموذج .');
+        }
+    });
+});
+
+
+  </script>
+
+
+
+
+
+
+</body>
+</html>
+

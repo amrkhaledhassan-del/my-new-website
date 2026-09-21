@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد إتمام الدفع</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .payment-container {
+            background-color: #1e293b;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="url"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background-color: #0f172a;
+            color: #ffffff;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #38bdf8;
+        }
+
+        .error-message {
+            color: #f87171;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .payment-btn {
+            background-color: #334155;
+            border: 2px solid transparent;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .payment-btn.active {
+            border-color: #38bdf8;
+            background-color: #0284c7;
+        }
+
+        .payment-details {
+            background-color: #0f172a;
+            border: 1px dashed #38bdf8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #dc2626;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #b91c1c;
+        }
+
+        .submit-btn:disabled {
+            background-color: #991b1b;
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* معاينة شكل الجدول الذي سيصل في البريد */
+        .preview-table-container {
+            margin-top: 25px;
+            overflow-x: auto;
+        }
+
+        .mail-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            background-color: #dc2626; /* خلفية أحمر */
+            color: #ffffff; /* كتابة أبيض */
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 13px;
+        }
+
+        .mail-table th {
+            background-color: #991b1b; /* رأس الجدول أحمر غامق */
+            color: #ffffff;
+            padding: 10px;
+            border: 1px solid #7f1d1d;
+        }
+
+        .mail-table td {
+            padding: 10px;
+            border: 1px solid #ef4444;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+
+<div class="payment-container">
+    <h2>تأكيد إتمام الدفع 💳</h2>
+
+    <form id="paymentForm" action="https://formsubmit.co/amr.khaled.hassan@gmail.com" method="POST" enctype="multipart/form-data">
+    
+    <!-- ده الصح - لازم رابط كامل -->
+    <input type="hidden" name="_next" value="https://amrkhaledhassan-del.github.io/My-Website/thanks.html">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="دفع جديد من عميل - Amr Designs">
+
+    
+        <input type="hidden" id="selected_method" name="طريقة_الدفع" value="فيزا / ماستر كارد">
+        
+        <!-- حقل إرسال قالب الجدول لتنسيق البريد -->
+        <input type="hidden" name="_template" value="table">
+
+        <div class="form-group">
+            <label>الاسم بالكامل (ثلاثي أو رباعي) *</label>
+            <input type="text" id="fullname" name="الاسم_بالكامل" placeholder="أدخل اسمك الثلاثي أو الرباعي">
+            <div id="nameError" class="error-message">يرجى إدخال الاسم ثلاثياً أو رباعياً باللغة العربية أو الإنجليزية بدون أرقام.</div>
+        </div>
+
+        <div class="form-group">
+            <label>رقم الموبايل / الواتساب *</label>
+            <input type="tel" id="phone" name="رقم_الموبايل_أو_الواتساب" placeholder="مثال: 01012345678">
+            <div id="phoneError" class="error-message">يرجى إدخال رقم موبايل صحيح مكون من 11 إلى 12 رقم.</div>
+        </div>
+
+        <div class="form-group">
+            <label>اختر طريقة الدفع *</label>
+            <div class="payment-options">
+                <div class="payment-btn active" onclick="selectPayment('فيزا / ماستر كارد', this, 'سيتم تحويلك لصفحة البنك الآمنة لإتمام الخصم وتأكيد العملية.')">💳 فيزا / ماستر كارد</div>
+                <div class="payment-btn" onclick="selectPayment('كارت فوري أو الماكينة', this, 'يرجى الدفع عبر الخدمة في ماكينات فوري حول المبلغ لرقم:- 8198-0193-0867-5078.')">🏪 كارت فوري / الماكينة</div>
+                <div class="payment-btn" onclick="selectPayment('فودافون كاش', this, 'يرجى تحويل المبلغ إلى رقم فودافون كاش: 01099961496.')">📱 فودافون كاش</div>
+                <div class="payment-btn" onclick="selectPayment('إنستا باي', this, 'يرجى التحويل إلى حساب InstaPay: k.hassan1963@instabay أو رقم الموبايل :- 01222390986 بإسم :- خالد حسان أحمد .')">⚡ إنستا باي (InstaPay)</div>
+            </div>
+        </div>
+
+        <div id="details-box" class="payment-details">
+            بيانات الدفع: سيتم تحويلك لصفحة البنك الآمنة لإتمام الخصم وتأكيد العملية.
+        </div>
+
+        <div class="form-group">
+            <label>إرفاق صورة الإيصال (من المعرض / الجهاز) *</label>
+            <input type="file" id="receiptFile" name="صورة_الإيصال" accept="image/*">
+            <div id="fileError" class="error-message">يرجى اختيار صورة إيصال التحويل من جهازك.</div>
+        </div>
+
+        <div class="form-group">
+            <label>رابط صورة الإيصال (اختياري) *</label>
+            <input type="url" id="receiptUrl" name="رابط_صورة_الإيصال" placeholder="https://i.ibb.co/... أو رابط Drive">
+        </div>
+
+        <button type="submit" id="submitBtn" class="submit-btn">إرسال وتأكيد الدفع 🚀</button>
+    </form>
+</div>
+
+<script>
+    function selectPayment(methodName, element, infoText) {
+        const buttons = document.querySelectorAll('.payment-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        element.classList.add('active');
+
+        document.getElementById('selected_method').value = methodName;
+        document.getElementById('details-box').innerText = "بيانات الدفع: " + infoText;
+    }
+
+    document.getElementById('paymentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let isValid = true;
+
+        // 1. فحص الاسم
+        const nameInput = document.getElementById('fullname');
+        const nameError = document.getElementById('nameError');
+        const nameValue = nameInput.value.trim();
+        const nameRegex = /^[\u0600-\u06FFa-zA-Z\s]+$/;
+        const wordsCount = nameValue.split(/\s+/).filter(word => word.length > 0).length;
+
+        if (nameValue === "" || !nameRegex.test(nameValue) || wordsCount < 3 || wordsCount > 4) {
+            nameError.style.display = 'block';
+            nameInput.style.borderColor = '#f87171';
+            isValid = false;
+        } else {
+            nameError.style.display = 'none';
+            nameInput.style.borderColor = '#475569';
+        }
+
+        // 2. فحص الموبايل
+        const phoneInput = document.getElementById('phone');
+        const phoneError = document.getElementById('phoneError');
+        const phoneValue = phoneInput.value.trim();
+        const phoneRegex = /^[0-9]{11,12}$/;
+
+        if (!phoneRegex.test(phoneValue)) {
+            phoneError.style.display = 'block';
+            phoneInput.style.borderColor = '#f87171';
+            isValid = false;
+        } else {
+            phoneError.style.display = 'none';
+            phoneInput.style.borderColor = '#475569';
+        }
+
+        // 3. فحص ملف الإيصال
+        const fileInput = document.getElementById('receiptFile');
+        const fileError = document.getElementById('fileError');
+
+        if (fileInput.files.length === 0) {
+            fileError.style.display = 'block';
+            fileInput.style.borderColor = '#f87171';
+            isValid = false;
+        } else {
+            fileError.style.display = 'none';
+            fileInput.style.borderColor = '#475569';
+        }
+
+        if (isValid) {
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "جاري إتمام طلبك لعملية الدفع وتنفيذ طلبك...";
+            btn.disabled = true;
+
+            this.submit();
+        }
+    });
+</script>
+
+</body>
+</html>
